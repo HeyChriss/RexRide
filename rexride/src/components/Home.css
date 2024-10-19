@@ -1,0 +1,67 @@
+.home-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text contrast */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .text-content {
+    color: white;
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+  }
+  
+  .text-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .text-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .home-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .home-button {
+    padding: 10px 20px;
+    background-color: rgba(200, 212, 224, 0.7); /* Semi-transparent background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: rgba(0, 86, 179, 0.7); /* Darker semi-transparent background on hover */
+  }

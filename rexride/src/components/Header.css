@@ -1,0 +1,85 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+    height: 50px; /* Increase the height to make the header thicker */
+  }
+  
+  .nav-menu {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* Center the links vertically */
+    gap: 100px; /* Increase the gap to add more space between the links */
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 25px; /* Increase the font size for a bigger font */
+  }
+  
+  .nav-links a:hover {
+    color: #007bff;
+  }
+  
+  .logo-container {
+    position: absolute;
+    right: 20px;
+    top: -10px; /* Make the logo appear larger by positioning it above the header */
+  }
+  
+  .logo {
+    height: 100px; /* Larger size */
+    width: auto;
+  }
+
+
+
+ /* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      height: auto; /* Allow the header to expand for multiple rows */
+      padding: 10px 20px;
+    }
+  
+    .nav-menu {
+      order: 2; /* Move navigation below the logo */
+      width: 100%;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .nav-links {
+      flex-direction: column; /* Stack the navigation links vertically */
+      gap: 15px; /* Adjust spacing for smaller screens */
+    }
+  
+    .nav-links a {
+      font-size: 16px; /* Smaller font size for mobile devices */
+    }
+  
+    .logo-container {
+      display: none; /* Hide the logo on smaller screens */
+    }
+  }
