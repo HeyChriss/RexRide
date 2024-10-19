@@ -6,17 +6,37 @@ import './LoginPage.css';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // State for storing error messages
   const { login } = useAuth(); // Get the login function from the AuthContext
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Simulate authentication (replace with actual authentication logic)
-    if (email === 'test@example.com' && password === 'password') {
-      login(email); // Update the authentication status with the email
-      navigate('/'); // Redirect to the home page after successful login
-    } else {
-      alert('Invalid email or password'); // Show an error message
+
+    try {
+      // Send the login request to the server
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        // If login is successful, update the AuthContext and navigate to the home page
+        login(email);
+        navigate('/');
+      } else {
+        // Handle different error messages returned from the server
+        setErrorMessage(result.error || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      // Handle network or server errors
+      setErrorMessage('An error occurred while trying to log in. Please try again later.');
+      console.error('Login error:', error);
     }
   };
 
@@ -24,6 +44,7 @@ const LoginPage = () => {
     <div className="login-page">
       <div className="login-container">
         <h2>Log In</h2>
+        {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message if present */}
         <form onSubmit={handleLogin}>
           <div className="input-group">
             <label htmlFor="email">Email:</label>

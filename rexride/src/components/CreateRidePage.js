@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './CreateRidePage.css';
-import rideImage from '../assets/create-ride.png'; // Replace with the actual image path
+import rideImage from '../assets/create-ride.png'; 
+import { useAuth } from './AuthContext'; // Import the AuthContext
 
 const CreateRidePage = () => {
+  const { userName } = useAuth(); // Get the user's name from AuthContext
   const [formData, setFormData] = useState({
     vehicle: '',
     from: '',
@@ -14,6 +16,8 @@ const CreateRidePage = () => {
     pickupPlace: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,11 +27,48 @@ const CreateRidePage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate ride creation (this could be replaced with an API call)
-    console.log('Ride Created:', formData);
-    setIsSubmitted(true);
+
+    if (isLoading) return; 
+    setIsLoading(true);
+
+    const payload = {
+      plate: formData.plateNumber,
+      seats: formData.seatsAvailable,
+      pickup: formData.pickupPlace,
+      destination: formData.to,
+      price: formData.price,
+      from: formData.from,
+      to: formData.to,
+      date_and_time: formData.date,
+      status: true,
+      vehicle: formData.vehicle,
+      driver: userName, // Include the driver's name
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/api/add_ride', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setError(null);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'Failed to create ride');
+      }
+    } catch (error) {
+      setError('An error occurred while creating the ride');
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false); 
+    }
   };
 
   return (
@@ -44,6 +85,7 @@ const CreateRidePage = () => {
           </div>
           <div className="create-ride-form">
             <h2>Create a New Ride</h2>
+            {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="vehicle">Vehicle:</label>
