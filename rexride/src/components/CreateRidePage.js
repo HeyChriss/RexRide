@@ -33,6 +33,8 @@ const CreateRidePage = () => {
     if (isLoading) return; 
     setIsLoading(true);
 
+    const driverName = userName ? userName : "Unknown Driver"; 
+
     const payload = {
       plate: formData.plateNumber,
       seats: formData.seatsAvailable,
@@ -44,7 +46,7 @@ const CreateRidePage = () => {
       date_and_time: formData.date,
       status: true,
       vehicle: formData.vehicle,
-      driver: userName, // Include the driver's name
+      driver: driverName, // Include the driver's name
     };
 
     try {
