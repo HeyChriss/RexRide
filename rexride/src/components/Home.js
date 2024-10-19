@@ -22,7 +22,7 @@ const Home = () => {
               <button onClick={() => navigate('/login')} className="home-button">
                 Log In
               </button>
-              <button onClick={() => navigate('/create-account')} className="home-button">
+              <button onClick={() => navigate('/multistep-toggle')} className="home-button">
                 Create Account
               </button>
             </div>
