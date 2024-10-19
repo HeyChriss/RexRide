@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LoginPage.css'; // Importing the CSS file for styling
+import { useAuth } from './AuthContext'; // Import the authentication context
+import './LoginPage.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Use React Router's useNavigate hook
+  const { login } = useAuth(); // Get the login function from the AuthContext
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Handle login logic here (e.g., authentication)
-    console.log('Email:', email);
-    console.log('Password:', password);
+    // Simulate authentication (replace with actual authentication logic)
+    if (email === 'test@example.com' && password === 'password') {
+      login(email); // Update the authentication status with the email
+      navigate('/'); // Redirect to the home page after successful login
+    } else {
+      alert('Invalid email or password'); // Show an error message
+    }
   };
 
   return (
@@ -42,7 +48,7 @@ const LoginPage = () => {
           <button type="submit" className="login-button">Log In</button>
         </form>
         <div className="create-account-link">
-          <a href="#create-account" onClick={() => navigate('/create-account')}>Create Account</a>
+          <a href="#create-account" onClick={() => navigate('/multistep-toggle')}>Create Account</a>
         </div>
       </div>
     </div>

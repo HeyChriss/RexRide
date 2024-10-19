@@ -6,6 +6,10 @@ import utah from '../assets/utah.png';
 import other from '../assets/other.png';
 import needs from '../assets/needs.png';
 import gives from '../assets/gives.png';
+import provo from '../assets/provo.png';
+import saltLakeCity from '../assets/saltlakecity.png';
+import boise from '../assets/boise.png';
+import walmartShuttle from '../assets/walmartshuttle.png';
 
 const MultiStepToggle = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -13,7 +17,9 @@ const MultiStepToggle = () => {
   const navigate = useNavigate(); // Hook for navigation
 
   const nextStep = () => {
-    if (currentStep < 5) {
+    if (currentStep === 3) {
+      navigate('/create-account'); // Redirect to CreateAccount after step 3
+    } else {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -26,8 +32,8 @@ const MultiStepToggle = () => {
 
   const handleLocationChange = (value) => {
     setLocation(value);
-    if (value === 'Giving a ride') {
-      navigate('/login'); // Redirect to the login page
+    if (currentStep === 3) {
+      navigate('/create-account'); // Redirect to CreateAccount immediately after selecting a card on step 3
     } else {
       nextStep();
     }
@@ -41,15 +47,15 @@ const MultiStepToggle = () => {
             <h2>Where are you located?</h2>
             <div className="location-buttons">
               <div className="card" onClick={() => handleLocationChange('Rexburg')}>
-                <img src={rexburg} alt="Car 1" className="car-image" />
+                <img src={rexburg} alt="Rexburg" className="car-image" />
                 <p>Rexburg</p>
               </div>
               <div className="card" onClick={() => handleLocationChange('Utah')}>
-                <img src={utah} alt="Car 2" className="car-image" />
+                <img src={utah} alt="Utah" className="car-image" />
                 <p>Utah</p>
               </div>
               <div className="card" onClick={() => handleLocationChange('Other')}>
-                <img src={other} alt="Car 3" className="car-image" />
+                <img src={other} alt="Other" className="car-image" />
                 <p>Other</p>
               </div>
             </div>
@@ -72,11 +78,37 @@ const MultiStepToggle = () => {
           </div>
         );
       case 3:
-        return <div className="step-content"><h2>Step 3: Content goes here</h2></div>;
-      case 4:
-        return <div className="step-content"><h2>Step 4: Content goes here</h2></div>;
-      case 5:
-        return <div className="step-content"><h2>Step 5: Content goes here</h2></div>;
+        return (
+          <div className="step-content">
+            <h2>Select Your Destination</h2>
+            <div className="location-buttons">
+              <div className="card" onClick={() => handleLocationChange('Rexburg')}>
+                <img src={rexburg} alt="Rexburg" className="car-image" />
+                <p>Rexburg</p>
+              </div>
+              <div className="card" onClick={() => handleLocationChange('Provo')}>
+                <img src={provo} alt="Provo" className="car-image" />
+                <p>Provo</p>
+              </div>
+              <div className="card" onClick={() => handleLocationChange('Salt Lake City')}>
+                <img src={saltLakeCity} alt="Salt Lake City" className="car-image" />
+                <p>Salt Lake City</p>
+              </div>
+              <div className="card" onClick={() => handleLocationChange('Boise')}>
+                <img src={boise} alt="Boise" className="car-image" />
+                <p>Boise</p>
+              </div>
+              <div className="card" onClick={() => handleLocationChange('Walmart Shuttle')}>
+                <img src={walmartShuttle} alt="Walmart Shuttle" className="car-image" />
+                <p>Walmart Shuttle in Rexburg</p>
+              </div>
+              <div className="card" onClick={() => handleLocationChange('Other')}>
+                <img src={other} alt="Other" className="car-image" />
+                <p>Other</p>
+              </div>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
@@ -87,7 +119,7 @@ const MultiStepToggle = () => {
       <div>{renderStepContent()}</div>
       <div className="navigation-buttons">
         {currentStep > 1 && <button onClick={prevStep}>Previous</button>}
-        {currentStep < 5 && <button onClick={nextStep}>Next</button>}
+        {currentStep <= 3 && <button onClick={nextStep}>Next</button>}
       </div>
     </div>
   );

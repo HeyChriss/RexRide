@@ -1,0 +1,101 @@
+.rides-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .rides-list {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .rides-list h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .ride-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .ride-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    color: #007bff;
+  }
+  
+  .ride-card p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .rides-image {
+    flex: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Make sure the image container takes full height */
+  }
+  
+  .rides-image img {
+    max-width: 100%;
+    max-height: 80vh; /* Limit the image height */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .reserve-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .reserve-button:hover {
+    background-color: #0056b3;
+  }
+
+  .create-ride-button {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-ride-button:hover {
+    background-color: #218838;
+  }
+  
+  .reserve-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .reserve-button:hover {
+    background-color: #0056b3;
+  }
